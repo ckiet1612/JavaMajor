@@ -2,7 +2,7 @@
 .root,
 .app-shell {
     -fx-background-color: #05070a;
-    -fx-font-family: "B612", "Segoe UI", "Arial", "System";
+    -fx-font-family: "Segoe UI", "Arial", "System";
     -fx-font-size: 12px;
 }
 
@@ -12,7 +12,7 @@
 .combo-box,
 .color-picker,
 .list-cell {
-    -fx-font-family: "B612", "Segoe UI", "Arial", "System";
+    -fx-font-family: "Segoe UI", "Arial", "System";
     -fx-font-size: 12px;
 }
 
@@ -51,6 +51,7 @@
 
 .eyebrow-label {
     -fx-text-fill: #7fa5ad;
+    -fx-font-family: "B612", "Segoe UI", "Arial", "System";
     -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
@@ -101,7 +102,7 @@
 .detail-label,
 .asset-name,
 .asset-meta {
-    -fx-font-family: "B612 Mono", "Consolas", "Courier New", "Monospaced";
+    -fx-font-family: "Consolas", "Courier New", "Monospaced";
 }
 
 .detail-label {
@@ -116,7 +117,7 @@
     -fx-border-color: #26383d;
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
-    -fx-font-family: "B612 Mono", "Consolas", "Courier New", "Monospaced";
+    -fx-font-family: "Consolas", "Courier New", "Monospaced";
     -fx-font-size: 12px;
     -fx-padding: 9px 10px;
 }
