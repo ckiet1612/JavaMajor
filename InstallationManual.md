@@ -1,270 +1,192 @@
-# Tài liệu hướng dẫn cài đặt
+# TÀI LIỆU HƯỚNG DẪN CÀI ĐẶT
 
-## 1. Giới thiệu
+## 1. Thông tin chung
 
-Tài liệu này hướng dẫn cách cài môi trường, chạy project từ mã nguồn và build app desktop cho project **Orbital Simulation**.
+**Tên phần mềm:** Orbital Simulation  
+**Nền tảng hỗ trợ:** Windows và macOS  
+**Mục đích:** Hướng dẫn giảng viên/người dùng cài đặt và khởi chạy ứng dụng mô phỏng mạng vệ tinh.
 
-Ứng dụng được viết bằng JavaFX kết hợp Spring Boot, dùng H2 Database để lưu dữ liệu vệ tinh. Khi chạy ở chế độ dev, database được tạo tự động trong thư mục `data/`, nên không cần cài thêm MySQL hay PostgreSQL.
+Ứng dụng đã được đóng gói sẵn thành file chạy độc lập. Người dùng không cần cài JDK, Maven hoặc build lại mã nguồn để sử dụng phần mềm.
 
-## 2. Yêu cầu môi trường
+## 2. Gói cài đặt
 
-Máy cần có các thành phần sau:
+Tùy theo hệ điều hành đang sử dụng, chọn đúng file cài đặt tương ứng:
 
-- JDK 21
-- Maven 3.9.x hoặc thư mục Maven local `apache-maven-3.9.6`
-- Git nếu muốn clone project từ GitHub
-- Windows 10/11 hoặc macOS
+| Hệ điều hành | File cần tải |
+| --- | --- |
+| Windows | `Orbital Simulation Windows.zip` |
+| macOS | `Orbital Simulation MacOS.zip` |
 
-Kiểm tra Java:
+Các file này có thể được cung cấp kèm bài nộp hoặc tải từ đường dẫn do nhóm phát triển cung cấp.
 
-```bash
-java -version
-javac -version
-jpackage --version
-```
-
-Nếu `jpackage` không chạy được thì thường là máy đang dùng JRE hoặc JDK chưa được thêm vào `PATH`.
-
-## 3. Lấy mã nguồn
-
-Nếu dùng Git:
-
-```bash
-git clone https://github.com/ckiet1612/JavaMajor.git
-cd JavaMajor
-```
-
-Nếu nhận project dạng file zip thì giải nén ra một thư mục dễ nhớ, ví dụ:
-
-```text
-C:\JavaMajor
-```
-
-hoặc trên macOS:
-
-```text
-/Users/macbook/Documents/University Library/JavaMajor
-```
-
-## 4. Cài JDK 21
+## 3. Yêu cầu hệ thống
 
 ### Windows
 
-Mở PowerShell bằng quyền Administrator, sau đó chạy:
-
-```powershell
-winget install --id EclipseAdoptium.Temurin.21.JDK -e --accept-source-agreements --accept-package-agreements
-```
-
-Sau khi cài xong, đóng PowerShell rồi mở lại và kiểm tra:
-
-```powershell
-java -version
-jpackage --version
-```
+- Windows 10 hoặc Windows 11.
+- RAM tối thiểu 4 GB, khuyến nghị 8 GB.
+- Dung lượng trống tối thiểu 300 MB.
+- Máy có hỗ trợ hiển thị đồ họa cơ bản để chạy giao diện JavaFX 3D.
 
 ### macOS
 
-Có thể cài JDK 21 từ trang Eclipse Adoptium, hoặc dùng Homebrew nếu máy đã có:
+- macOS 11 trở lên.
+- RAM tối thiểu 4 GB, khuyến nghị 8 GB.
+- Dung lượng trống tối thiểu 300 MB.
+- Máy có hỗ trợ hiển thị đồ họa cơ bản để chạy giao diện JavaFX 3D.
 
-```bash
-brew install --cask temurin@21
-```
+## 4. Cài đặt trên Windows
 
-Sau đó kiểm tra:
+### Bước 1: Tải file cài đặt
 
-```bash
-java -version
-jpackage --version
-```
-
-## 5. Cài Maven
-
-Project có thể dùng Maven local trong thư mục `apache-maven-3.9.6`. Nếu thư mục này đã có sẵn trong project thì không cần cài Maven vào hệ thống.
-
-### Windows
-
-Nếu chưa có Maven, tải Maven local vào project bằng PowerShell:
-
-```powershell
-cd "C:\JavaMajor"
-
-$MavenVersion = "3.9.6"
-$MavenZip = "apache-maven-$MavenVersion-bin.zip"
-$MavenUrl = "https://archive.apache.org/dist/maven/maven-3/$MavenVersion/binaries/$MavenZip"
-
-Invoke-WebRequest -Uri $MavenUrl -OutFile $MavenZip
-Expand-Archive $MavenZip -DestinationPath .
-Remove-Item $MavenZip
-
-.\apache-maven-3.9.6\bin\mvn.cmd -version
-```
-
-### macOS
-
-Nếu project đã có `apache-maven-3.9.6`, kiểm tra bằng:
-
-```bash
-./apache-maven-3.9.6/bin/mvn -version
-```
-
-Nếu muốn dùng Maven hệ thống:
-
-```bash
-brew install maven
-mvn -version
-```
-
-## 6. Chạy project từ mã nguồn
-
-### Windows
-
-```powershell
-cd "C:\JavaMajor"
-.\apache-maven-3.9.6\bin\mvn.cmd javafx:run
-```
-
-Nếu Maven đã có trong `PATH`:
-
-```powershell
-cd "C:\JavaMajor"
-mvn javafx:run
-```
-
-### macOS
-
-```bash
-cd "/Users/macbook/Documents/University Library/JavaMajor"
-./apache-maven-3.9.6/bin/mvn javafx:run
-```
-
-Nếu Maven đã có trong `PATH`:
-
-```bash
-mvn javafx:run
-```
-
-## 7. Build app macOS
-
-Chạy script build:
-
-```bash
-cd "/Users/macbook/Documents/University Library/JavaMajor"
-chmod +x scripts/build-macos-app.sh
-OPEN_AFTER_BUILD=false ./scripts/build-macos-app.sh
-```
-
-App sau khi build nằm ở:
-
-```text
-target/macos-app/Orbital Simulation.app
-```
-
-Mở app:
-
-```bash
-open "target/macos-app/Orbital Simulation.app"
-```
-
-## 8. Build app Windows
-
-Trên Windows VM, mở PowerShell trong thư mục project:
-
-```powershell
-cd "C:\JavaMajor"
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\scripts\build-windows-app.ps1 -Zip
-```
-
-File chạy sau khi build:
-
-```text
-target\windows-app\Orbital Simulation\Orbital Simulation.exe
-```
-
-File zip sau khi build:
+Tải file:
 
 ```text
 Orbital Simulation Windows.zip
 ```
 
-Chạy app đã build:
+Sau khi tải xong, đặt file ở thư mục dễ tìm, ví dụ `Downloads` hoặc `Desktop`.
 
-```powershell
-& "C:\JavaMajor\target\windows-app\Orbital Simulation\Orbital Simulation.exe"
-```
+### Bước 2: Giải nén file
 
-## 9. Database
-
-Khi chạy bằng Maven, dữ liệu được lưu ở:
+Nhấn chuột phải vào file zip và chọn:
 
 ```text
-data/orbitaldb
+Extract All...
 ```
 
-Khi chạy bản app đã đóng gói bằng `jpackage`, dữ liệu được lưu trong thư mục người dùng:
+Sau đó chọn thư mục để giải nén.
+
+Sau khi giải nén, bên trong sẽ có thư mục:
 
 ```text
-.orbital-simulation/orbitaldb
+Orbital Simulation
 ```
 
-Database dùng H2 nên project tự tạo bảng và dữ liệu mẫu khi chạy lần đầu.
+### Bước 3: Mở ứng dụng
 
-## 10. Một số lỗi thường gặp
+Mở thư mục vừa giải nén và chạy file:
 
-### Lỗi `mvn is not recognized`
-
-Máy chưa có Maven trong `PATH`. Cách nhanh nhất là dùng Maven local:
-
-```powershell
-.\apache-maven-3.9.6\bin\mvn.cmd javafx:run
+```text
+Orbital Simulation.exe
 ```
 
-### Lỗi `jpackage was not found`
+Nếu Windows hiện cảnh báo bảo mật, chọn **More info** rồi chọn **Run anyway** để tiếp tục mở ứng dụng.
 
-Máy chưa cài JDK đầy đủ hoặc đang trỏ sang JRE. Cài lại JDK 21 và mở terminal mới.
+### Bước 4: Kiểm tra sau khi mở
 
-### PowerShell không cho chạy script
+Ứng dụng được cài đặt thành công khi màn hình chính hiển thị:
 
-Chạy lệnh này trong đúng cửa sổ PowerShell hiện tại:
+- Mô hình Trái Đất 3D ở bên trái.
+- Bảng điều khiển nhiệm vụ ở bên phải.
+- Danh sách vệ tinh và các chức năng phóng vệ tinh, mở liên kết tín hiệu.
 
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+## 5. Cài đặt trên macOS
+
+### Bước 1: Tải file cài đặt
+
+Tải file:
+
+```text
+Orbital Simulation MacOS.zip
 ```
 
-Sau đó chạy lại script build.
+Sau khi tải xong, đặt file ở thư mục dễ tìm, ví dụ `Downloads`.
 
-### Font tiếng Việt bị ô vuông trên Windows
+### Bước 2: Giải nén file
 
-Nguyên nhân thường là đang chạy bản build cũ. Hãy cập nhật lại code mới nhất, sau đó chạy lại:
+Nhấp đúp vào file zip để giải nén.
 
-```powershell
-.\apache-maven-3.9.6\bin\mvn.cmd javafx:run
+Sau khi giải nén, macOS sẽ tạo ứng dụng:
+
+```text
+Orbital Simulation.app
 ```
 
-Nếu dùng file `.exe`, cần build lại app Windows để CSS mới được đóng gói vào app.
+### Bước 3: Di chuyển ứng dụng
 
-## 11. Kiểm tra nhanh trước khi nộp
+Có thể chạy trực tiếp ứng dụng tại vị trí vừa giải nén. Nếu muốn cài gọn hơn, kéo file:
 
-Chạy build Maven:
-
-```bash
-./apache-maven-3.9.6/bin/mvn -q -DskipTests package
+```text
+Orbital Simulation.app
 ```
 
-Chạy app:
+vào thư mục:
 
-```bash
-./apache-maven-3.9.6/bin/mvn javafx:run
+```text
+Applications
 ```
 
-Kiểm tra các thao tác chính:
+### Bước 4: Mở ứng dụng
 
-- Thêm vệ tinh mới
-- Chọn vệ tinh trong danh sách
-- Xem thông tin chi tiết
-- Mở liên kết tín hiệu
-- Ngắt liên kết
-- Xóa vệ tinh được chọn
-- Xóa toàn bộ mạng vệ tinh
-- Kéo và zoom mô hình 3D
+Nhấp đúp vào **Orbital Simulation.app** để mở.
+
+Nếu macOS chặn ứng dụng do chưa được ký bởi nhà phát triển chính thức:
+
+1. Nhấn chuột phải vào **Orbital Simulation.app**.
+2. Chọn **Open**.
+3. Chọn **Open** thêm một lần nữa trong hộp thoại xác nhận.
+
+Thao tác này thường chỉ cần thực hiện ở lần mở đầu tiên.
+
+## 6. Dữ liệu của ứng dụng
+
+Ứng dụng dùng cơ sở dữ liệu H2 được nhúng sẵn. Người dùng không cần cài đặt thêm hệ quản trị cơ sở dữ liệu.
+
+Khi chạy lần đầu, ứng dụng sẽ tự tạo dữ liệu cần thiết. Các vệ tinh được thêm mới trong quá trình sử dụng sẽ được lưu lại để dùng cho các lần mở sau.
+
+## 7. Gỡ cài đặt
+
+### Windows
+
+Xóa thư mục đã giải nén:
+
+```text
+Orbital Simulation
+```
+
+Nếu muốn xóa cả dữ liệu đã lưu, có thể xóa thêm thư mục dữ liệu của ứng dụng trong thư mục người dùng.
+
+### macOS
+
+Xóa file:
+
+```text
+Orbital Simulation.app
+```
+
+Nếu đã kéo ứng dụng vào `Applications`, chỉ cần xóa ứng dụng khỏi thư mục đó.
+
+## 8. Một số lỗi thường gặp
+
+### Không mở được file zip
+
+Kiểm tra lại file tải về đã hoàn tất chưa. Nếu file bị lỗi, tải lại gói cài đặt từ nguồn ban đầu.
+
+### Windows báo ứng dụng không rõ nguồn gốc
+
+Đây là cảnh báo bình thường với các ứng dụng bài tập lớn chưa ký chứng chỉ phát hành. Chọn **More info** rồi chọn **Run anyway** nếu file được tải từ nguồn tin cậy.
+
+### macOS báo không thể mở ứng dụng
+
+Sử dụng cách mở bằng chuột phải:
+
+```text
+Right click -> Open -> Open
+```
+
+Nếu vẫn không mở được, kiểm tra xem file `.app` đã được giải nén hoàn toàn chưa.
+
+### Ứng dụng mở nhưng giao diện hiển thị chậm
+
+Ứng dụng có sử dụng mô hình 3D, nên lần khởi động đầu tiên có thể mất vài giây. Nếu máy đang chạy nhiều chương trình nặng, nên đóng bớt trước khi mở ứng dụng.
+
+## 9. Kết quả mong đợi
+
+Sau khi cài đặt đúng, người dùng có thể mở **Orbital Simulation** và sử dụng các chức năng chính:
+
+- Quan sát mô hình Trái Đất 3D.
+- Thêm vệ tinh vào hệ thống.
+- Xem danh sách và thông tin vệ tinh.
+- Mở liên kết tín hiệu giữa hai vệ tinh.
+- Xóa vệ tinh hoặc xóa toàn bộ mạng vệ tinh.

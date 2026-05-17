@@ -1,95 +1,93 @@
-# Tài liệu hướng dẫn sử dụng
+# TÀI LIỆU HƯỚNG DẪN SỬ DỤNG
 
-## 1. Mục đích ứng dụng
+## 1. Giới thiệu
 
-**Orbital Simulation** là ứng dụng mô phỏng mạng vệ tinh quanh Trái Đất. Người dùng có thể thêm vệ tinh, theo dõi danh sách vệ tinh, xem thông tin chi tiết và mô phỏng đường liên kết tín hiệu giữa hai vệ tinh.
+**Orbital Simulation** là ứng dụng mô phỏng mạng vệ tinh quanh Trái Đất. Ứng dụng cho phép người dùng thêm vệ tinh, quan sát quỹ đạo, xem thông tin vệ tinh và mô phỏng liên kết tín hiệu giữa các vệ tinh trong mạng.
 
-Giao diện được chia thành hai phần chính:
-
-- Khu vực 3D bên trái để xem Trái Đất, vệ tinh, quỹ đạo và đường liên kết.
-- Bảng điều khiển bên phải để nhập dữ liệu, mở liên kết và quản lý danh sách vệ tinh.
+Tài liệu này mô tả cách sử dụng các chức năng chính của ứng dụng sau khi đã cài đặt thành công.
 
 ## 2. Khởi động ứng dụng
 
-Nếu chạy từ mã nguồn trên macOS:
+### Windows
 
-```bash
-./apache-maven-3.9.6/bin/mvn javafx:run
-```
-
-Nếu chạy từ mã nguồn trên Windows:
-
-```powershell
-.\apache-maven-3.9.6\bin\mvn.cmd javafx:run
-```
-
-Nếu đã build app Windows:
-
-```powershell
-& "C:\JavaMajor\target\windows-app\Orbital Simulation\Orbital Simulation.exe"
-```
-
-Nếu đã build app macOS:
-
-```bash
-open "target/macos-app/Orbital Simulation.app"
-```
-
-## 3. Các khu vực trên giao diện
-
-### Viewport 3D
-
-Đây là khu vực hiển thị Trái Đất và các vệ tinh. Người dùng có thể:
-
-- Kéo chuột trái để xoay góc nhìn.
-- Cuộn chuột để zoom gần hoặc xa.
-- Click vào vùng trống để bỏ chọn vệ tinh.
-- Quan sát đường quỹ đạo và đường liên kết tín hiệu khi có route.
-
-### Trạng thái nhiệm vụ
-
-Panel này hiển thị trạng thái hiện tại của hệ thống, ví dụ:
-
-- Hệ thống sẵn sàng.
-- Đã phóng vệ tinh mới.
-- Thiếu dữ liệu nhập.
-- Đang theo dõi tín hiệu.
-- Liên kết bị che khuất hoặc mất tín hiệu.
-
-Khi thao tác lỗi, nên đọc dòng trạng thái này trước vì app thường ghi rõ lý do.
-
-### Phóng vệ tinh
-
-Đây là form để thêm vệ tinh mới vào mạng theo dõi.
-
-Các trường cần nhập:
-
-- **Tên**: tên hoặc callsign của vệ tinh, ví dụ `SAT-01`.
-- **Vĩ độ**: vị trí ban đầu theo độ.
-- **Kinh độ**: vị trí ban đầu theo độ.
-- **Độ cao**: độ cao quỹ đạo, đơn vị km.
-- **Nghiêng**: độ nghiêng quỹ đạo, đơn vị độ.
-- **Cấu hình**: gồm kích cỡ hiển thị và màu vệ tinh.
-
-Sau khi nhập xong, bấm:
+Mở thư mục đã giải nén từ file `Orbital Simulation Windows.zip`, sau đó chạy:
 
 ```text
-PHÓNG VỆ TINH
+Orbital Simulation.exe
 ```
 
-Nếu dữ liệu hợp lệ, vệ tinh sẽ xuất hiện trong mô hình 3D và trong danh sách **Mạng theo dõi**.
+### macOS
 
-## 4. Thêm vệ tinh mới
+Mở thư mục đã giải nén từ file `Orbital Simulation MacOS.zip`, sau đó chạy:
 
-Các bước thao tác:
+```text
+Orbital Simulation.app
+```
 
-1. Nhập tên vệ tinh.
-2. Nhập vĩ độ, kinh độ, độ cao và độ nghiêng.
-3. Nhập kích cỡ nếu muốn đổi kích thước hiển thị.
-4. Chọn màu vệ tinh bằng color picker.
-5. Bấm **PHÓNG VỆ TINH**.
+Sau khi khởi động, màn hình chính của ứng dụng sẽ xuất hiện.
 
-Ví dụ dữ liệu:
+## 3. Bố cục giao diện
+
+Giao diện chính gồm hai khu vực:
+
+| Khu vực | Chức năng |
+| --- | --- |
+| Mô hình 3D | Hiển thị Trái Đất, vệ tinh, quỹ đạo và đường liên kết tín hiệu. |
+| Bảng điều khiển | Quản lý vệ tinh, nhập thông tin vệ tinh mới và tạo liên kết tín hiệu. |
+
+## 4. Khu vực mô hình 3D
+
+Khu vực bên trái hiển thị mô hình Trái Đất và các vệ tinh đang có trong hệ thống.
+
+Các thao tác cơ bản:
+
+- Kéo chuột trái để xoay góc nhìn.
+- Cuộn chuột để phóng to hoặc thu nhỏ.
+- Chọn vệ tinh trong danh sách để xem vị trí được đánh dấu trên mô hình.
+- Quan sát đường liên kết tín hiệu khi chức năng liên kết được bật.
+
+Mô hình 3D giúp người dùng hình dung trực quan vị trí vệ tinh và trạng thái kết nối trong mạng.
+
+## 5. Bảng trạng thái nhiệm vụ
+
+Panel **Trạng thái nhiệm vụ** hiển thị phản hồi của hệ thống sau mỗi thao tác.
+
+Ví dụ:
+
+- Hệ thống đã sẵn sàng.
+- Vệ tinh đã được thêm thành công.
+- Dữ liệu nhập chưa hợp lệ.
+- Liên kết tín hiệu đang được theo dõi.
+- Liên kết bị che khuất hoặc mất tín hiệu.
+
+Khi thao tác không thành công, người dùng nên kiểm tra nội dung trong panel này để biết nguyên nhân.
+
+## 6. Thêm vệ tinh mới
+
+Chức năng **Phóng vệ tinh** dùng để thêm một vệ tinh mới vào mạng theo dõi.
+
+### Thông tin cần nhập
+
+| Trường | Ý nghĩa |
+| --- | --- |
+| Tên | Tên hoặc mã định danh của vệ tinh. |
+| Vĩ độ | Vĩ độ ban đầu của vệ tinh, đơn vị độ. |
+| Kinh độ | Kinh độ ban đầu của vệ tinh, đơn vị độ. |
+| Độ cao | Độ cao quỹ đạo, đơn vị km. |
+| Nghiêng | Độ nghiêng quỹ đạo, đơn vị độ. |
+| Cấu hình | Kích cỡ hiển thị và màu đại diện của vệ tinh. |
+
+### Các bước thực hiện
+
+1. Nhập tên vệ tinh vào ô **Tên**.
+2. Nhập các giá trị số cho **Vĩ độ**, **Kinh độ**, **Độ cao** và **Nghiêng**.
+3. Nhập kích cỡ hiển thị nếu muốn thay đổi kích thước vệ tinh trên mô hình.
+4. Chọn màu đại diện bằng ô chọn màu.
+5. Nhấn nút **PHÓNG VỆ TINH**.
+
+Nếu dữ liệu hợp lệ, vệ tinh mới sẽ xuất hiện trong mô hình 3D và trong danh sách **Mạng theo dõi**.
+
+### Ví dụ dữ liệu
 
 ```text
 Tên: SAT-01
@@ -100,139 +98,100 @@ Nghiêng: 45
 Kích cỡ: 0.35
 ```
 
-Lưu ý:
+Lưu ý: các trường số chỉ nhập số, không nhập kèm đơn vị như `km` hoặc `độ`.
 
-- Tên vệ tinh không được để trống.
-- Không nên dùng trùng tên vệ tinh đã có trong mạng.
-- Các ô số phải nhập bằng số, không nhập thêm chữ như `km` hoặc `độ`.
+## 7. Xem danh sách vệ tinh
 
-## 5. Chọn và xem chi tiết vệ tinh
+Panel **Mạng theo dõi** hiển thị các vệ tinh hiện có trong hệ thống.
 
-Ở panel **Mạng theo dõi**, mỗi dòng là một vệ tinh.
+Mỗi vệ tinh trong danh sách có các thông tin tóm tắt:
 
-Khi chọn một vệ tinh:
+- Tên vệ tinh.
+- Nhóm quỹ đạo, ví dụ LEO, MEO hoặc GEO.
+- Độ cao.
+- Vận tốc.
+- Màu đại diện.
 
-- Vệ tinh được highlight trong mô hình 3D.
-- Panel **Hồ sơ vệ tinh** hiện ở góc dưới bên phải của viewport.
-- App hiển thị các thông tin như tên, độ cao, vận tốc và thông tin quỹ đạo.
+Người dùng có thể chọn một vệ tinh để xem chi tiết hoặc chọn nhiều vệ tinh để xóa cùng lúc.
 
-Có thể chọn nhiều vệ tinh để xóa cùng lúc. Nếu bấm lại vào một vệ tinh đang được chọn, app sẽ bỏ chọn vệ tinh đó.
+## 8. Xem thông tin chi tiết vệ tinh
 
-## 6. Mở liên kết tín hiệu
+Khi chọn một vệ tinh trong **Mạng theo dõi**, ứng dụng sẽ:
 
-Panel **Liên kết tín hiệu** dùng để mô phỏng đường truyền giữa hai vệ tinh.
+- Đánh dấu vệ tinh tương ứng trên mô hình 3D.
+- Hiển thị panel **Hồ sơ vệ tinh** ở góc dưới bên phải của vùng mô hình.
+- Hiển thị các thông tin chi tiết như tên, độ cao, vận tốc và thông tin quỹ đạo.
 
-Các bước thao tác:
+Nếu chọn nhiều vệ tinh cùng lúc, panel chi tiết sẽ được ẩn để tránh hiển thị sai thông tin.
 
-1. Chọn vệ tinh ở ô **Điểm phát**.
-2. Chọn vệ tinh ở ô **Điểm thu**.
-3. Bấm **MỞ LIÊN KẾT**.
+## 9. Mở liên kết tín hiệu
 
-Khi liên kết được mở:
+Chức năng **Liên kết tín hiệu** dùng để mô phỏng đường truyền giữa hai vệ tinh.
 
-- App sẽ tìm đường truyền phù hợp trong mạng vệ tinh.
-- Đường liên kết được vẽ trong viewport 3D.
-- Trạng thái nhiệm vụ sẽ cập nhật số trạm đang được theo dõi.
+### Các bước thực hiện
 
-Nếu hai vệ tinh bị che khuất hoặc không tìm được đường truyền, app sẽ báo mất tín hiệu.
+1. Chọn vệ tinh nguồn tại ô **Điểm phát**.
+2. Chọn vệ tinh đích tại ô **Điểm thu**.
+3. Nhấn nút **MỞ LIÊN KẾT**.
 
-## 7. Ngắt liên kết tín hiệu
+Sau khi mở liên kết, ứng dụng sẽ tính toán đường truyền phù hợp trong mạng vệ tinh. Nếu tìm được đường truyền, đường liên kết sẽ được hiển thị trên mô hình 3D.
 
-Để xóa đường liên kết đang hiển thị, bấm:
+Nếu không tìm được đường truyền hợp lệ, panel trạng thái sẽ thông báo liên kết bị che khuất hoặc mất tín hiệu.
+
+## 10. Ngắt liên kết tín hiệu
+
+Để dừng việc hiển thị liên kết hiện tại, nhấn nút:
 
 ```text
 NGẮT
 ```
 
-Sau khi ngắt, route line trong mô hình 3D sẽ biến mất và trạng thái nhiệm vụ trở về trạng thái bình thường.
+Sau khi ngắt, đường liên kết trên mô hình 3D sẽ được xóa và hệ thống trở về trạng thái theo dõi bình thường.
 
-## 8. Xóa vệ tinh
+## 11. Xóa vệ tinh
 
 ### Xóa vệ tinh được chọn
 
-1. Chọn một hoặc nhiều vệ tinh trong **Mạng theo dõi**.
-2. Bấm **XÓA CHỌN**.
+Các bước thực hiện:
 
-Các vệ tinh được chọn sẽ bị xóa khỏi:
+1. Chọn một hoặc nhiều vệ tinh trong danh sách **Mạng theo dõi**.
+2. Nhấn nút **XÓA CHỌN**.
 
-- Database
-- Danh sách theo dõi
-- Mô hình 3D
-- ComboBox chọn điểm phát và điểm thu
-
-Nếu vệ tinh đang nằm trong đường liên kết hiện tại, app sẽ tự ngắt liên kết.
+Các vệ tinh được chọn sẽ bị xóa khỏi danh sách, mô hình 3D và dữ liệu lưu trữ của ứng dụng.
 
 ### Xóa toàn bộ vệ tinh
 
-Bấm:
+Nhấn nút:
 
 ```text
 XÓA TẤT CẢ
 ```
 
-Chức năng này xóa toàn bộ mạng vệ tinh hiện tại. Nên cân nhắc trước khi dùng vì dữ liệu sẽ bị xóa khỏi database.
+Chức năng này xóa toàn bộ vệ tinh đang có trong hệ thống. Người dùng nên cân nhắc trước khi thực hiện vì dữ liệu sẽ bị xóa khỏi cơ sở dữ liệu của ứng dụng.
 
-## 9. Cách đọc danh sách vệ tinh
+## 12. Một số lưu ý khi sử dụng
 
-Trong **Mạng theo dõi**, mỗi vệ tinh có các thông tin tóm tắt:
+- Tên vệ tinh không được để trống.
+- Không nên nhập trùng tên vệ tinh đã có.
+- Các trường vĩ độ, kinh độ, độ cao, độ nghiêng và kích cỡ phải là số.
+- Cần chọn đủ **Điểm phát** và **Điểm thu** trước khi mở liên kết tín hiệu.
+- Điểm phát và điểm thu phải là hai vệ tinh khác nhau.
+- Khi xóa vệ tinh đang nằm trong liên kết hiện tại, ứng dụng sẽ tự động ngắt liên kết.
 
-- Tên vệ tinh
-- Vùng quỹ đạo như LEO, MEO hoặc GEO
-- Độ cao
-- Vận tốc
-- Màu đại diện
+## 13. Quy trình sử dụng đề xuất
 
-Danh sách này giúp chọn nhanh vệ tinh để xem chi tiết, mở route hoặc xóa.
+Để kiểm tra đầy đủ các chức năng chính, người dùng có thể thực hiện theo thứ tự sau:
 
-## 10. Một số tình huống hay gặp
+1. Mở ứng dụng.
+2. Quan sát mô hình Trái Đất 3D.
+3. Thêm một vệ tinh mới bằng panel **Phóng vệ tinh**.
+4. Chọn vệ tinh trong **Mạng theo dõi** để xem thông tin chi tiết.
+5. Chọn hai vệ tinh trong panel **Liên kết tín hiệu**.
+6. Nhấn **MỞ LIÊN KẾT** để hiển thị đường truyền.
+7. Xoay và phóng to mô hình 3D để quan sát liên kết.
+8. Nhấn **NGẮT** để dừng liên kết.
+9. Thử xóa một vệ tinh hoặc xóa toàn bộ mạng vệ tinh.
 
-### Bấm phóng nhưng không thêm được vệ tinh
+## 14. Kết luận
 
-Kiểm tra lại:
-
-- Tên có bị trống không.
-- Tên có bị trùng không.
-- Các trường số có nhập đúng định dạng không.
-
-Ví dụ đúng:
-
-```text
-550
-```
-
-Ví dụ dễ lỗi:
-
-```text
-550 km
-```
-
-### Không mở được liên kết
-
-Kiểm tra lại:
-
-- Đã chọn đủ điểm phát và điểm thu chưa.
-- Hai điểm có phải là hai vệ tinh khác nhau không.
-- Có đủ vệ tinh trong mạng để tạo đường truyền không.
-
-Nếu trạng thái báo liên kết bị che khuất, nghĩa là tại thời điểm đó app không tìm thấy đường truyền hợp lệ.
-
-### Không thấy panel chi tiết
-
-Panel chi tiết chỉ hiện khi chọn đúng một vệ tinh. Nếu chọn nhiều vệ tinh hoặc bỏ chọn hết, panel sẽ ẩn.
-
-### Chữ tiếng Việt bị lỗi trên Windows
-
-Nếu chữ có dấu bị ô vuông, có thể bạn đang chạy bản build cũ. Hãy cập nhật code mới và build lại app Windows.
-
-## 11. Gợi ý sử dụng khi demo
-
-Khi demo bài tập lớn, có thể đi theo flow này:
-
-1. Mở app và giới thiệu viewport 3D.
-2. Thêm một vệ tinh mới bằng form **Phóng vệ tinh**.
-3. Chọn vệ tinh trong **Mạng theo dõi** để xem highlight và hồ sơ chi tiết.
-4. Chọn hai vệ tinh trong **Liên kết tín hiệu**.
-5. Bấm **MỞ LIÊN KẾT** để hiển thị route.
-6. Kéo xoay mô hình 3D để xem đường truyền.
-7. Bấm **NGẮT** để xóa route.
-8. Xóa vệ tinh được chọn hoặc xóa toàn bộ mạng nếu cần reset dữ liệu.
+Orbital Simulation cung cấp các chức năng cơ bản để mô phỏng và quản lý một mạng vệ tinh ở mức trực quan. Giao diện được thiết kế theo hướng bảng điều khiển nhiệm vụ, giúp người dùng dễ quan sát trạng thái, thao tác với dữ liệu vệ tinh và theo dõi liên kết tín hiệu trong mô hình 3D.
