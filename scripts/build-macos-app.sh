@@ -28,6 +28,7 @@ cd "$ROOT_DIR"
 rm -rf "$DIST_DIR"
 mkdir -p "$INPUT_DIR" "$PACKAGE_DIR" "$DIST_DIR"
 cp "$TARGET_DIR/$MAIN_JAR" "$INPUT_DIR/"
+cp -R "$ROOT_DIR/src/main/resources/fonts" "$INPUT_DIR/fonts"
 xattr -cr "$INPUT_DIR" 2>/dev/null || true
 
 jpackage \

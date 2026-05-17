@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -20,6 +21,13 @@ public class JavaFxApplication extends Application {
     private static final String JPACKAGE_MARKER = "jpackage.app-version";
     private static final String DATASOURCE_URL = "spring.datasource.url";
     private static final String APP_DATA_DIR = ".orbital-simulation";
+    private static final String FONT_RESOURCE_DIR = "/fonts/";
+    private static final String[] BUNDLED_FONT_FILES = {
+            "B612-Regular.ttf",
+            "B612-Bold.ttf",
+            "B612Mono-Regular.ttf",
+            "B612Mono-Bold.ttf"
+    };
 
     private ConfigurableApplicationContext applicationContext;
 
@@ -67,20 +75,50 @@ public class JavaFxApplication extends Application {
     }
 
     private void loadBundledFonts() {
-        loadFont("/fonts/B612-Regular.ttf");
-        loadFont("/fonts/B612-Bold.ttf");
-        loadFont("/fonts/B612Mono-Regular.ttf");
-        loadFont("/fonts/B612Mono-Bold.ttf");
+        for (String fontFile : BUNDLED_FONT_FILES) {
+            if (!loadFont(fontFile)) {
+                System.err.println("Could not load bundled font, falling back for: " + fontFile);
+            }
+        }
     }
 
-    private void loadFont(String resourcePath) {
+    private boolean loadFont(String fontFile) {
+        String resourcePath = FONT_RESOURCE_DIR + fontFile;
+        return loadFontFromResource(resourcePath) || loadFontFromPackagedApp(fontFile);
+    }
+
+    private boolean loadFontFromResource(String resourcePath) {
         try (InputStream fontStream = getClass().getResourceAsStream(resourcePath)) {
-            if (fontStream == null || Font.loadFont(fontStream, 12) == null) {
-                throw new IllegalStateException("Could not load font: " + resourcePath);
-            }
+            return fontStream != null && Font.loadFont(fontStream, 12) != null;
         } catch (Exception e) {
-            throw new IllegalStateException("Could not load font: " + resourcePath, e);
+            return false;
         }
+    }
+
+    private boolean loadFontFromPackagedApp(String fontFile) {
+        String classPath = System.getProperty("java.class.path", "");
+        for (String classPathEntry : classPath.split(File.pathSeparator)) {
+            if (classPathEntry.isBlank()) {
+                continue;
+            }
+
+            try {
+                Path appDirectory = resolveAppDirectory(classPathEntry);
+                Path fontPath = appDirectory.resolve("fonts").resolve(fontFile);
+                if (Files.isRegularFile(fontPath) && Font.loadFont(fontPath.toUri().toString(), 12) != null) {
+                    return true;
+                }
+            } catch (Exception ignored) {
+                // Some launchers put non-file entries on the classpath. Those can be skipped.
+            }
+        }
+
+        return false;
+    }
+
+    private Path resolveAppDirectory(String classPathEntry) {
+        Path path = Path.of(classPathEntry);
+        return Files.isRegularFile(path) ? path.getParent() : path;
     }
 
     @Override

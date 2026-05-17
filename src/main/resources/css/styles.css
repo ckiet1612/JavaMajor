@@ -1,30 +1,8 @@
-/* Main mission-control theme. */
-@font-face {
-    font-family: "B612";
-    src: url("../fonts/B612-Regular.ttf");
-}
-
-@font-face {
-    font-family: "B612";
-    font-weight: bold;
-    src: url("../fonts/B612-Bold.ttf");
-}
-
-@font-face {
-    font-family: "B612 Mono";
-    src: url("../fonts/B612Mono-Regular.ttf");
-}
-
-@font-face {
-    font-family: "B612 Mono";
-    font-weight: bold;
-    src: url("../fonts/B612Mono-Bold.ttf");
-}
-
+/* Fonts are loaded in Java so packaged apps do not rely on CSS URL handling. */
 .root,
 .app-shell {
     -fx-background-color: #05070a;
-    -fx-font-family: "B612";
+    -fx-font-family: "B612", "Segoe UI", "Arial", "System";
     -fx-font-size: 12px;
 }
 
@@ -34,7 +12,7 @@
 .combo-box,
 .color-picker,
 .list-cell {
-    -fx-font-family: "B612";
+    -fx-font-family: "B612", "Segoe UI", "Arial", "System";
     -fx-font-size: 12px;
 }
 
@@ -86,7 +64,7 @@
 .subhead-label {
     -fx-text-fill: #7c8790;
     -fx-font-size: 11px;
-    -fx-font-family: "B612 Mono";
+    -fx-font-family: "B612 Mono", "Consolas", "Courier New", "Monospaced";
 }
 
 .mission-panel,
@@ -123,7 +101,7 @@
 .detail-label,
 .asset-name,
 .asset-meta {
-    -fx-font-family: "B612 Mono";
+    -fx-font-family: "B612 Mono", "Consolas", "Courier New", "Monospaced";
 }
 
 .detail-label {
@@ -138,7 +116,7 @@
     -fx-border-color: #26383d;
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
-    -fx-font-family: "B612 Mono";
+    -fx-font-family: "B612 Mono", "Consolas", "Courier New", "Monospaced";
     -fx-font-size: 12px;
     -fx-padding: 9px 10px;
 }
