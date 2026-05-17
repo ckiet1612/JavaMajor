@@ -17,8 +17,6 @@ Tùy theo hệ điều hành đang sử dụng, chọn đúng file cài đặt t
 | Windows | `Orbital Simulation Windows.zip` |
 | macOS | `Orbital Simulation MacOS.zip` |
 
-Các file này có thể được cung cấp kèm bài nộp hoặc tải từ đường dẫn do nhóm phát triển cung cấp.
-
 ## 3. Yêu cầu hệ thống
 
 ### Windows
