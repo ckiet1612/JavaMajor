@@ -4,7 +4,7 @@
 
 **Tên phần mềm:** Orbital Simulation  
 **Nền tảng hỗ trợ:** Windows và macOS  
-**Mục đích:** Hướng dẫn giảng viên/người dùng cài đặt và khởi chạy ứng dụng mô phỏng mạng vệ tinh.
+**Mục đích:** Hướng dẫn người dùng cài đặt và khởi chạy ứng dụng mô phỏng mạng vệ tinh.
 
 Ứng dụng đã được đóng gói sẵn thành file chạy độc lập. Người dùng không cần cài JDK, Maven hoặc build lại mã nguồn để sử dụng phần mềm.
 
