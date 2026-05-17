@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<SplitPane dividerPositions="0.7" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.orbital.controller.MainController">
+   <styleClass>
+      <String fx:value="app-shell" />
+      <String fx:value="main-split" />
+   </styleClass>
+   <items>
+      <StackPane fx:id="sceneContainer" minWidth="520.0" prefHeight="800.0" prefWidth="840.0" styleClass="viewport-shell">
+         <children>
+            <VBox fx:id="floatingInfoBox" maxHeight="230.0" maxWidth="330.0" spacing="8.0" styleClass="floating-info-panel" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+               <StackPane.margin>
+                  <Insets bottom="20.0" right="20.0" />
+               </StackPane.margin>
+               <children>
+                  <Label styleClass="floating-title" text="HỒ SƠ VỆ TINH" />
+                  <Label fx:id="detailLabel" styleClass="detail-label" text="..." wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" minWidth="300.0" prefHeight="800.0" prefWidth="360.0" styleClass="console-scroll" vbarPolicy="AS_NEEDED">
+         <content>
+            <VBox prefWidth="358.0" spacing="14.0" styleClass="console">
+               <padding>
+                  <Insets bottom="18.0" left="18.0" right="18.0" top="18.0" />
+               </padding>
+               <children>
+                  <VBox spacing="4.0" styleClass="console-header">
+                     <children>
+                        <Label styleClass="eyebrow-label" text="MISSION CONTROL" />
+                        <Label styleClass="header-label" text="Trạm điều khiển quỹ đạo" wrapText="true" />
+                        <Label styleClass="subhead-label" text="Telemetry · Routing · Asset Network" />
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" styleClass="mission-panel">
+                     <children>
+                        <Label styleClass="module-title" text="TRẠNG THÁI NHIỆM VỤ" />
+                        <Label fx:id="statusLabel" maxWidth="Infinity" text="Hệ thống sẵn sàng" wrapText="true">
+                           <styleClass>
+                              <String fx:value="status-label" />
+                              <String fx:value="status-ok" />
+                           </styleClass>
+                        </Label>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" styleClass="mission-panel">
+                     <children>
+                        <Label styleClass="module-title" text="PHÓNG VỆ TINH" />
+                        <GridPane hgap="8.0" vgap="8.0">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="76.0" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <children>
+                              <Label styleClass="field-label" text="Tên" />
+                              <TextField fx:id="nameField" promptText="VD: SAT-01" styleClass="input-field" GridPane.columnIndex="1" />
+                              <Label styleClass="field-label" text="Vĩ độ" GridPane.rowIndex="1" />
+                              <TextField fx:id="latField" promptText="độ" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label styleClass="field-label" text="Kinh độ" GridPane.rowIndex="2" />
+                              <TextField fx:id="lonField" promptText="độ" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label styleClass="field-label" text="Độ cao" GridPane.rowIndex="3" />
+                              <TextField fx:id="altField" promptText="km" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label styleClass="field-label" text="Nghiêng" GridPane.rowIndex="4" />
+                              <TextField fx:id="incField" promptText="độ" styleClass="input-field" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Label styleClass="field-label" text="Cấu hình" GridPane.rowIndex="5" />
+                              <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <children>
+                                    <TextField fx:id="sizeField" promptText="kích cỡ" styleClass="input-field" HBox.hgrow="ALWAYS" />
+                                    <ColorPicker fx:id="colorPicker" prefHeight="32.0" styleClass="color-picker" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleAddObject" text="PHÓNG VỆ TINH">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="primary-button" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" styleClass="mission-panel">
+                     <children>
+                        <Label styleClass="module-title" text="LIÊN KẾT TÍN HIỆU" />
+                        <ComboBox fx:id="fromCombo" maxWidth="Infinity" promptText="Điểm phát" styleClass="combo-box" />
+                        <ComboBox fx:id="toCombo" maxWidth="Infinity" promptText="Điểm thu" styleClass="combo-box" />
+                        <HBox spacing="8.0">
+                           <children>
+                              <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleRoute" text="MỞ LIÊN KẾT" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="action-button" />
+                                    <String fx:value="link-button" />
+                                 </styleClass>
+                              </Button>
+                              <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleClearRoute" text="NGẮT" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="action-button" />
+                                    <String fx:value="secondary-button" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <VBox spacing="10.0" styleClass="mission-panel" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="module-title" text="MẠNG THEO DÕI" />
+                        <ListView fx:id="objectListView" prefHeight="235.0" styleClass="object-list" VBox.vgrow="ALWAYS" />
+                        <HBox spacing="8.0">
+                           <children>
+                              <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleDeleteSelected" text="XÓA CHỌN" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="action-button" />
+                                    <String fx:value="danger-button" />
+                                 </styleClass>
+                              </Button>
+                              <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleDeleteAll" text="XÓA TẤT CẢ" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="action-button" />
+                                    <String fx:value="danger-button" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </items>
+</SplitPane>

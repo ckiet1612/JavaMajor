@@ -1,0 +1,17 @@
+.DS_Store
+*.app/
+
+# Build output
+target/
+
+# Local tooling
+apache-maven-*/
+
+# Runtime database files
+data/
+*.mv.db
+*.trace.db
+
+# Crash dumps and temp archives
+hs_err_pid*.log
+temp.zip
